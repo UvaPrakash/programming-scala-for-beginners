@@ -1,3 +1,5 @@
+### Environment Setup
+
 Environment setup provided below is for Linux users.
 
 **Step 1**
@@ -41,6 +43,4 @@ scala HelloWorld.scala
 ```
 
 ![](/assets/HelloWorld_scala.png)
-
-
 

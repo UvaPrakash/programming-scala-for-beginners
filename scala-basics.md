@@ -1,3 +1,5 @@
+### Scala Basics
+
 ### val and var
 
 Scala allows one to declare whether the variable is mutable or immutable.
