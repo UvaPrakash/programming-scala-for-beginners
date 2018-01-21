@@ -98,9 +98,9 @@ var a = 10
 var result1 = ""
 
 do {
-	result1 = result1 + a
-	if(a>1) result1 = result1 + ","
-	a = a - 1
+    result1 = result1 + a
+    if(a>1) result1 = result1 + ","
+    a = a - 1
 } while(a>0)
 
 println(result1)
@@ -109,4 +109,43 @@ println(result1)
 ![](/assets/dowhileStatement.png)
 
 The difference between while loop and do while loop is that in case of do while loop atleast once the loop gets executed irrespective of the condition.
+
+#### For Loops
+
+```
+// Object Oriented Style
+var result = ""
+for(a <- 1 to 10) {
+        result = result + a
+        if(a<10) result = result + ","
+}
+
+println(result)
+```
+
+![](/assets/forLoops_1.png)
+
+Using for loops to perform operations in List
+
+```
+// Using for loops in List to add 1 to every number in List
+val xs = List(1,2,3,4)
+var result1 =  List[Int]()
+
+for(a <- xs) result1 = result1 :+ (a+1)
+println(result1)
+```
+
+![](/assets/forLoops_2.png)
+
+The above code can be optimized as below.
+
+```
+// Functional Implementation
+val list2 = List(1,2,3,4)
+val result2 = for(b <- list2) yield (b+1)
+println(result2)
+```
+
+![](/assets/forLoops_3.png)
 
