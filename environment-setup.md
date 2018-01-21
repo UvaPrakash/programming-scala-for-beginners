@@ -24,3 +24,23 @@ Set PATH variables in .bashrc file
 
 Once above steps are done check whether Scala is working fine![](/assets/scala_install.png)
 
+**Hello World Script in Scala**
+
+Let us create a Scala script to print "Hello World".
+
+Create a script named HelloWorld.scala with the below println statement.
+
+```
+println("Hello World!!!")
+```
+
+Run the below command to interpret the Scala script
+
+```
+scala HelloWorld.scala
+```
+
+![](/assets/HelloWorld_scala.png)
+
+
+
