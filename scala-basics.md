@@ -54,5 +54,22 @@ Here the lazy val 'b' is getting executed only during its call and not during th
 | Double | 64-bit IEEE 754 double-precision float |
 | Boolean | true or false |
 
+#### IF, ELSE IF, ELSE
+
+Create a new file ifStatement.scala and paste the below code
+
+```
+val a = 1
+val result = if(a<10) "Number is less than 10"
+	     else if(a>10) "Number is greater than 10" 
+  	     else "Number is 10"
+
+println(result)
+```
+
+![](/assets/if_statement.png)
+
+
+
 
 
