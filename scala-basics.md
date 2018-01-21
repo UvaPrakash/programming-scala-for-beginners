@@ -149,3 +149,43 @@ println(result2)
 
 ![](/assets/forLoops_3.png)
 
+#### String Formatting
+
+```
+// Older Java style
+val str1 = String.format("This is a %s","Test")
+println(str1)
+
+// Scala style
+val str2 = "This is a %s".format("test")
+println(str2)
+
+// Printing multiple values in sequence
+println("Multiple string %s %s %s".format("value1","value2","value3"))
+
+// Printing multiple values in any order
+println("Multiple string %3$s %2$s %1$s".format("value1","value2","value3"))
+
+// Printing date, time and year
+import java.time._
+println("We will be eating on %1$tB %1$te in the year %1$tY".format(LocalDate.now))
+printf("We will be eating on %1$tB %1$te in the year %1$tY",LocalDate.now)
+```
+
+#### ![](/assets/stringFormatting.png)
+
+#### String Interpolation
+
+```
+val a = 99
+val b = 100
+println(s"$a testing")
+println(s"${a+b} testing")
+
+val ticketCost = 50
+val bandName = "ABC"
+println(f"The $bandName%s tickets costs $$$ticketCost%1.2f")
+```
+
+![](/assets/stringInterpolation.png)
+
