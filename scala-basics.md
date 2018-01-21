@@ -61,15 +61,52 @@ Create a new file ifStatement.scala and paste the below code
 ```
 val a = 1
 val result = if(a<10) "Number is less than 10"
-	     else if(a>10) "Number is greater than 10" 
-  	     else "Number is 10"
+         else if(a>10) "Number is greater than 10" 
+           else "Number is 10"
 
 println(result)
 ```
 
 ![](/assets/if_statement.png)
 
+#### WHILE, DO WHILE
 
+```
+// Program for printing number in reverse
+// Object Oriented Style
+var a = 10
+var result1 = ""
+while(a>0) {
+        result1 = result1 + a
+        if (a>1) result1 = result1 + ","
+        a = a-1
+}
+println(result1)
 
+// Functional Style
+val result2 = (1 to 10).reverse.mkString(",")
+println(result2)
 
+// Optimized Code
+println((10 to 1 by -1).mkString(","))
+```
+
+![](/assets/whileStatement.png)**Do While Statement**
+
+```
+var a = 10
+var result1 = ""
+
+do {
+	result1 = result1 + a
+	if(a>1) result1 = result1 + ","
+	a = a - 1
+} while(a>0)
+
+println(result1)
+```
+
+![](/assets/dowhileStatement.png)
+
+The difference between while loop and do while loop is that in case of do while loop atleast once the loop gets executed irrespective of the condition.
 
