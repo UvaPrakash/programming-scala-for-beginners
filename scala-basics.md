@@ -48,17 +48,11 @@ Here the lazy val 'b' is getting executed only during its call and not during th
 | Short | 16-bit signed two's complement integer \(-2^15 to 2^15-1, inclusive\) |
 | Int | 32-bit signed two's complement integer \(-2^31 to 2^31-1, inclusive\) |
 | Long | 64-bit signed two's complement integer \(-2^63 to 2^63-1, inclusive\) |
-| Char | 16-bit signed unsigned Unicode character \(0 to 2^16-1, inclusive\) |
+| Char | 16-bit unsigned Unicode character \(0 to 2^16-1, inclusive\) |
 | String | sequence of chars |
 | Float | 32-bit IEEE 754 single-precision float |
 | Double | 64-bit IEEE 754 double-precision float |
 | Boolean | true or false |
-
-
-
-
-
-
 
 
 
