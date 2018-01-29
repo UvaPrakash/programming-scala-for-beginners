@@ -126,3 +126,26 @@ We need to pass a default value to the accumulator. Hence we have defined factor
 
 Now running the code will print the factorial of 10000 without any StackOverflowError.
 
+#### Methods in Methods
+
+We can refactor the above code so that we can include method inside another method.
+
+Create a scala program MethodsInMethods.scala
+
+```
+import scala.annotation.tailrec
+
+def factorial(n:BigInt) = {
+	@tailrec
+	def fact(n:BigInt, acc:BigInt):BigInt = {
+		if(n == 0 || n == 1) acc
+		else fact(n-1, acc * n)
+	}
+	fact(n, 1)
+}
+
+println(factorial(10000))
+```
+
+
+
