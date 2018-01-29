@@ -90,7 +90,7 @@ println(factorial(5))
 
 ![](/assets/recursion_factorial.png)
 
-Every recurs­ive func­tion has a _base case _and a _recurs­ive case. _The base case is the smal­lest piece, the prob­lem that we can solve right away. In this case it is the factorial of 0 or 1, which equals 1. The recurs­ive case is used to sim­plify the prob­lem by call­ing the same func­tion recurs­ively, until it reaches the base case.
+Every recurs­ive func­tion has a \_base case \_and a \_recurs­ive case. \_The base case is the smal­lest piece, the prob­lem that we can solve right away. In this case it is the factorial of 0 or 1, which equals 1. The recurs­ive case is used to sim­plify the prob­lem by call­ing the same func­tion recurs­ively, until it reaches the base case.
 
 When running factorial\(10000\) the method throws StackOverflowError.
 
@@ -112,15 +112,17 @@ Create a file tailRecursion.scala with the below code.
 import scala.annotation.tailrec
 
 @tailrec
-def factorial(n:BigInt, acc:BigInt):BigInt = {
+def fact(n:BigInt, acc:BigInt):BigInt = {
 if(n == 0 || n == 1) acc
-else factorial(n-1, acc * n)
+else fact(n-1, acc * n)
 }
 
-println(factorial(10000,1))
+def factorial(n:BigInt) = fact(n,1)
+
+println(factorial(10000))
 ```
 
+We need to pass a default value to the accumulator. Hence we have defined factorial method.
+
 Now running the code will print the factorial of 10000 without any StackOverflowError.
-
-
 
