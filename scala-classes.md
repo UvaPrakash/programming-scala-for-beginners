@@ -5,12 +5,28 @@
 Let us create a sample class inside Employee.scala
 
 ```
-class Employee(firstName: String, lastName: String)
+class Employee(val firstName: String, val lastName: String)
 ```
 
-We can compile the scala code using _scalac filename _which will create a class file.
+We can compile the scala code using \_scalac filename \_which will create a class file.
 
 ![](/assets/class_compilation.png)
 
+To examine the byte code use javap command. In javap -p refers to private which shows all classes and members.
+
 ![](/assets/javap_class.png)
+
+Create a file EmployeeScript.scala with the below code
+
+```
+val test = new Employee("First Name", "Last Name")
+println(test.firstName)
+println(test.lastName)
+```
+
+Run the EmployeeScript.scala with the class path as current directory
+
+![](/assets/class_output.png)
+
+
 
