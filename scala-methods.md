@@ -69,3 +69,28 @@ Here the if clause returns String \(AnyRef\) whereas else clause returns Int \(A
 
 Since both Unit and Int have common ancestor AnyVal hence the return type of method add is AnyVal.
 
+#### Recursion
+
+* Recursive methods call themselves
+* Recursive methods require return type signature
+* Recursive methods have a limited stack space
+
+Let us create a Factorial program to understand the concept of recursion.
+
+Create a program recursion.scala with the below code.
+
+```
+def factorial(n:BigInt):BigInt = {
+	if(n == 0 || n == 1) 1
+	else n * factorial(n-1)
+}
+
+println(factorial(5))
+```
+
+![](/assets/recursion_factorial.png)
+
+When running factorial\(10000\) the method throws StackOverflowError.
+
+![](/assets/recursion_stackoverflow.png)
+
