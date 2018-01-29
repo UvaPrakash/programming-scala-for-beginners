@@ -31,5 +31,22 @@ Run the EmployeeScript.scala with the class path as current directory
 * val creates accessors, access to the inner state
 * var creates mutators, allowing change to inner state
 
+#### Java Getters and Setters
+
+* Use @scala.beans.BeanProperty
+* Apply BeanProperty annotation to the property
+* If applied to a val, BeanProperty will create a getter
+* If applied to a var, BeanProperty will create a getter and setter
+
+Create a script EmployeeGettersandSetters.scala
+
+```
+import scala.beans.BeanProperty
+
+class Employee(@BeanProperty val firstName: String, @BeanProperty var lastName: String)
+```
+
+![](/assets/getters_and_setters.png)
+
 
 
