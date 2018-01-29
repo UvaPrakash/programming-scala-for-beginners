@@ -54,3 +54,18 @@ Few points to be observed
 
 Here the if clause returns String \(AnyRef\) whereas else clause returns Int \(AnyVal\). Hence the common ancestor of those two is Any.
 
+#### Units and Unit Convention
+
+* Unit is similar to void in Java.
+* Unit is actually an object
+* Unit's full type name is scala.Unit
+* Unit has one value \(\)
+
+![](/assets/Unit_Example.png)
+
+![](/assets/Unit_println.png)
+
+![](/assets/Unit_Example_2.png)
+
+Since both Unit and Int have common ancestor AnyVal hence the return type of method add is AnyVal.
+
