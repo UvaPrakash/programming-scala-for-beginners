@@ -117,7 +117,7 @@ if(n == 0 || n == 1) acc
 else fact(n-1, acc * n)
 }
 
-def factorial(n:BigInt) = fact(n,1)
+def factorial(n:BigInt) = fact(n,1) // Passing default value to the Accumulator
 
 println(factorial(10000))
 ```
