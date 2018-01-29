@@ -196,5 +196,19 @@ println(returnNumbers(a=20, b=30)) //Using default arguments and named arguments
 * Default arguments specify default values in the method declaration
 * In case default arguments are difficult to call, use named arguments to assist.
 
+#### IS INSTANCE OF / AS INSTANCE OF
+
+![](/assets/isInstanceOf.png)
+
+CharSequence is the parent of String
+
+![](/assets/CharSequence.png)
+
+* isInstanceOf will return Boolean whether object is an instance of a type
+* asInstanceOf will convert object to a certain type
+* Misuse of asInstanceOf will result in a ClassCastException
+
+![](/assets/asInstanceOf.png)
+
 
 
