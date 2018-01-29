@@ -210,5 +210,15 @@ CharSequence is the parent of String
 
 ![](/assets/asInstanceOf.png)
 
+#### Parameterized types on Methods
 
+* Parameterized types maintain type consistency
+* Parameterized types use \[ \]
+* Parameterized types are equivalent to Java generics
+
+![](/assets/Parameterized_Types_1.png)
+
+Here whatever arguments are passed, the return type of method remains Any. In order to maintain type consistency, we need to make use of Parameterized types on methods.
+
+![](/assets/Parameterized_Types_2.png)
 
