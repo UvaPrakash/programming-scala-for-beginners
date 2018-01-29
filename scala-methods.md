@@ -178,3 +178,23 @@ println(addNum("Hello "))
 
 ![](/assets/method_overloading.png)
 
+#### Named and Default Arguments
+
+Create a script NamedDefaultArgs.scala
+
+```
+def returnNumbers(check:Boolean = true, a:Int, b:Int) = if(check) a else b
+println(returnNumbers(true, 10, 20)) // returns 10
+println(returnNumbers(b=10, a=20, check=false)) //Using named arguments returns 10
+println(returnNumbers(a=20, b=30)) //Using default arguments and named arguments returns 20
+```
+
+![](/assets/named_and_default_arguments.png)
+
+* Named arguments allow calls by method parameter name
+* Named arguments allows calls in any order
+* Default arguments specify default values in the method declaration
+* In case default arguments are difficult to call, use named arguments to assist.
+
+
+
