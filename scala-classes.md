@@ -28,5 +28,8 @@ Run the EmployeeScript.scala with the class path as current directory
 
 ![](/assets/class_output.png)
 
+* val creates accessors, access to the inner state
+* var creates mutators, allowing change to inner state
+
 
 
