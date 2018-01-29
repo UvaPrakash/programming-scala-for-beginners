@@ -44,5 +44,13 @@ Few points to be observed
 * _**AnyRef**_ is the same as java.lang.Object in Java.
 * _**AnyRef**_ is the parent of all classes written in Java and Scala.
 
+#### Different Return Types
 
+* Types returned from a method are inferred
+* Type inferencer will make the best judgement
+* If types are different it will find a common ancestor
+
+![](/assets/Different_Return_Types.png)
+
+Here the if clause returns String \(AnyRef\) whereas else clause returns Int \(AnyVal\). Hence the common ancestor of those two is Any.
 
