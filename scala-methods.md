@@ -35,7 +35,7 @@ Few points to be observed
 
 #### Types: Any, AnyVal and AnyRef
 
+![](/assets/scala_types_any.png)
+
 ![](assets/unified-types-diagram.svg)
-
-
 
