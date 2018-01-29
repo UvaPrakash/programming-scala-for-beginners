@@ -20,7 +20,7 @@ This document was created as part of learning- O'reilly Beginning Scala Programm
 
 * Scala integrates the features of Object Oriented and Functional Programming.
 
-* Scala was created by Martin Odersky at the [École Polytechnique Fédérale de Lausanne](https://en.wikipedia.org/wiki/%C3%89cole_Polytechnique_F%C3%A9d%C3%A9rale_de_Lausanne) \(EPFL\)
+* Scala was developed by Martin Odersky at the [École Polytechnique Fédérale de Lausanne](https://en.wikipedia.org/wiki/École_Polytechnique_Fédérale_de_Lausanne) \(EPFL\)
 
 ### Positives of Scala
 
