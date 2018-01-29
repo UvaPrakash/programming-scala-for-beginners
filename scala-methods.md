@@ -136,16 +136,45 @@ Create a scala program MethodsInMethods.scala
 import scala.annotation.tailrec
 
 def factorial(n:BigInt) = {
-	@tailrec
-	def fact(n:BigInt, acc:BigInt):BigInt = {
-		if(n == 0 || n == 1) acc
-		else fact(n-1, acc * n)
-	}
-	fact(n, 1)
+    @tailrec
+    def fact(n:BigInt, acc:BigInt):BigInt = {
+        if(n == 0 || n == 1) acc
+        else fact(n-1, acc * n)
+    }
+    fact(n, 1)
 }
 
 println(factorial(10000))
 ```
 
+#### Operator Overloading
 
+![](/assets/operator_overloading.png)
+
+Here + acts as a method.
+
+Operator Overloading is using operators as method names.
+
+![](/assets/operator_overloading_2.png)
+
+#### Method Overloading
+
+* Method Overloading is reuse of the same method name.
+* Method parameters must be different
+
+Create a script MethodOverloading.scala
+
+```
+// addNum is the overloaded method
+
+def addNum(x:Int) = x + 10
+def addNum(y:Double) = y + 20.0
+def addNum(z:String) = z + 30
+
+println(addNum(5))
+println(addNum(10.2))
+println(addNum("Hello "))
+```
+
+![](/assets/method_overloading.png)
 
