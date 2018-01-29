@@ -81,8 +81,8 @@ Create a program recursion.scala with the below code.
 
 ```
 def factorial(n:BigInt):BigInt = {
-	if(n == 0 || n == 1) 1
-	else n * factorial(n-1)
+    if(n == 0 || n == 1) 1
+    else n * factorial(n-1)
 }
 
 println(factorial(5))
@@ -90,7 +90,37 @@ println(factorial(5))
 
 ![](/assets/recursion_factorial.png)
 
+Every recurs­ive func­tion has a _base case _and a _recurs­ive case. _The base case is the smal­lest piece, the prob­lem that we can solve right away. In this case it is the factorial of 0 or 1, which equals 1. The recurs­ive case is used to sim­plify the prob­lem by call­ing the same func­tion recurs­ively, until it reaches the base case.
+
 When running factorial\(10000\) the method throws StackOverflowError.
 
 ![](/assets/recursion_stackoverflow.png)
+
+#### Tail Optimized Recursion
+
+TCO- Tail Call Optimization
+
+A tail-recursive func­tion is a func­tion that has the recurs­ive call as its very last action.
+
+Accumulators are used to store intermediate results since we do not want intermediate results to pile on the call stack.
+
+We will redefine the above factorial method to be a tail recursive method to avoid StackOverflowError. By using @tailrec annotation we can implement TCO.
+
+Create a file tailRecursion.scala with the below code.
+
+```
+import scala.annotation.tailrec
+
+@tailrec
+def factorial(n:BigInt, acc:BigInt):BigInt = {
+if(n == 0 || n == 1) acc
+else factorial(n-1, acc * n)
+}
+
+println(factorial(10000,1))
+```
+
+Now running the code will print the factorial of 10000 without any StackOverflowError.
+
+
 
