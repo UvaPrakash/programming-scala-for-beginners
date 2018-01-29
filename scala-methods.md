@@ -39,3 +39,10 @@ Few points to be observed
 
 ![](assets/unified-types-diagram.svg)
 
+* _**Any**_** **is the utmost super type and is the parent of everything.
+* _**AnyVal **_is the parent of Primitive types.
+* _**AnyRef**_ is the same as java.lang.Object in Java.
+* _**AnyRef**_ is the parent of all classes written in Java and Scala.
+
+
+
