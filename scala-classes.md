@@ -311,5 +311,58 @@ object MainObject {
 
 #### equals, toString, hashCode
 
+* `equals` test for object equality
+* Instead of calling `equals` you can call `==`
+* `eq` is used to test if two objects are pointed to the same object
+* `hashCode` is a near unique 32-bit integer that represents the object and used in `HashMap`, `HashSet`
+* `toString` is a `String` representation of the object.
+
+```scala
+import scala.beans.BeanProperty
+
+class Employee(@BeanProperty val firstName: String,
+               @BeanProperty val lastName: String,
+               val title: String = "Programmer") {
+
+	override def equals(x:Any):Boolean = {
+		if(!x.isInstanceOf[Employee]) false
+		else {
+			val other = x.asInstanceOf[Employee]
+			other.firstName == this.firstName &&
+			other.lastName == this.lastName &&
+			other.title == this.title
+		}
+	}
+
+	override def hashCode:Int = {
+		var result = 19
+		result = 31 * result + firstName.hashCode
+		result = 31 * result + lastName.hashCode
+		result = 31 * result + title.hashCode
+		result
+	}
+
+	override def toString = s"Employee($firstName, $lastName, $title)"
+}
+
+object MainObject {
+        def main(args:Array[String]) {
+		val test = new Employee("Dennis", "Ritchie", "Programmer")
+		val test1 = new Employee("Dennis", "Ritchie", "Programmer")
+		val test2 = test1
+
+		println(test == test1) // true
+		println(test1 == test2) // true
+		println(test eq test1) // false
+		println(test1 eq test2) // true
+		println(test.hashCode == test1.hashCode) // true
+		println(test1.hashCode == test2.hashCode) // true
+		println(test2) // by default println uses toString
+        }
+}
+```
+
+![](/assets/equals_output.png)
+
 
 
