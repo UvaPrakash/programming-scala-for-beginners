@@ -240,3 +240,36 @@ object MainObject {
 
 ![](/assets/Exception_Handling_Output.png)
 
+#### Subclasses
+
+* extends is a keyword used to subclass a class from another class
+* Inheritance must have "is-a" relationship
+* We can have multiple classes in a single file
+
+```scala
+import scala.beans.BeanProperty
+
+class Employee(@BeanProperty val firstName: String,
+               @BeanProperty val lastName: String,
+               val title: String = "Programmer") {
+}
+
+class Department(val name: String)
+
+class Manager(firstName: String, lastName: String, title: String, val department: Department) extends Employee(firstName, lastName, title)
+
+
+object MainObject {
+        def main(args:Array[String]) {
+                val mathematics = new Department("Mathematics")
+                val test_manager = new Manager("Alan", "Turing", "Mathematician", mathematics)
+
+                println(test_manager.department.name)
+        }
+}
+```
+
+![](/assets/subclasses_output.png)
+
+
+
