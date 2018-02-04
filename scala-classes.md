@@ -137,3 +137,36 @@ object MainObject {
 
 ![](/assets/Constructor_Default_and_Named_Arguments_output.png)
 
+#### Methods in Classes
+
+* Methods are used in classes and have access to internal state
+* Methods can also use default and named parameters for added functionality
+
+```scala
+import scala.beans.BeanProperty
+
+class Employee(@BeanProperty val firstName: String,
+               @BeanProperty val lastName: String,
+               val title: String = "Programmer") {
+
+def showDetails() = { println(s"FirstName: $firstName LastName: $lastName Title: $title") }
+
+def copy(firstName: String = this.firstName,
+         lastName: String = this.lastName,
+         title: String = this.title) = new Employee(firstName, lastName, title)
+
+}
+
+object MainObject {
+        def main(args:Array[String]) {
+                val test = new Employee(lastName="Odersky", firstName="Martin")
+                test.showDetails
+
+                val newTest = test.copy(title = "Developer")
+                newTest.showDetails
+        }
+}
+```
+
+![](/assets/Methods_in_Classes_output.png)
+
