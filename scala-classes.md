@@ -439,16 +439,16 @@ Here in Employee class abstract methods `firstName` and `lastName` are defined b
 case class Box[T](t:T)
 
 object MainObject {
-	def main(args:Array[String]) {
-		val res1 = Box(1)
-		val res2:Box[Int] = Box(10)
-		val res3:Int = res2.t
-		val res4 = Box("Hello")
-		val res5 = Box(Box(4.0))
-		val res6:Double = res5.t.t
-		
-		println(s"res1: $res1\nres2: $res2\nres3: $res3\nres4: $res4\nres5: $res5\nres6: $res6")
-	}
+    def main(args:Array[String]) {
+        val res1 = Box(1)
+        val res2:Box[Int] = Box(10)
+        val res3:Int = res2.t
+        val res4 = Box("Hello")
+        val res5 = Box(Box(4.0))
+        val res6:Double = res5.t.t
+
+        println(s"res1: $res1\nres2: $res2\nres3: $res3\nres4: $res4\nres5: $res5\nres6: $res6")
+    }
 }
 ```
 
@@ -460,17 +460,51 @@ Below is an example with two different types.
 case class Couple[A, B](first: A, second: B)
 
 object MainObject {
-	def main(args:Array[String]) {
-		val res1 = Couple(10, "Scala")
-		val res2:Couple[Int, String] = Couple(10, "Scala")
-		val res3 = Couple("One", "Two")
-		val res4 = Couple("Hello", Couple(1, 10.0)) // Couple[String, Couple[Int, Double]]
-		val res5 = res4.second.second
-		
-		println(s"res1: $res1\nres2: $res2\nres3: $res3\nres4: $res4\nres5: $res5")
-	}
+    def main(args:Array[String]) {
+        val res1 = Couple(10, "Scala")
+        val res2:Couple[Int, String] = Couple(10, "Scala")
+        val res3 = Couple("One", "Two")
+        val res4 = Couple("Hello", Couple(1, 10.0)) // Couple[String, Couple[Int, Double]]
+        val res5 = res4.second.second
+
+        println(s"res1: $res1\nres2: $res2\nres3: $res3\nres4: $res4\nres5: $res5")
+    }
 }
 ```
 
 ![](/assets/parameterized_types_classes_output_2.png)
+
+#### Parameterized Methods in Classes
+
+* Parameterized methods can be used in conjunction with Parameterized classes
+* If a type is known at the class level, then it does not need to be declared at the method level
+
+```scala
+case class Couple[A, B](first: A, second: B) {
+	def swap:Couple[B, A] = Couple(second, first)
+}
+
+case class Box[T](t:T) {
+	def coupleWith[U](u:U):Box[Couple[T, U]] = Box(Couple(t, u))
+}
+
+object MainObject {
+	def main(args:Array[String]) {
+		val res1 = Box(200)
+		val res2:Box[Couple[Int, String]] = res1.coupleWith("Scala")
+		val res3 = res2.t.first
+		val res4 = res2.t.second
+		val res5 = Couple("One", 100.0)
+		val res6 = res5.swap
+		
+		println(s"res1: $res1\nres2: $res2\nres3: $res3\nres4: $res4\nres5: $res5\nres6: $res6")
+	}
+}
+```
+
+![](/assets/parameterized_methods_classes_output.png)
+
+
+
+
 
