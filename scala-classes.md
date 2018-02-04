@@ -380,16 +380,16 @@ How does a case class differ from normal class?
 
 ```scala
 case class Department(name: String) {
-	override def toString = s"Department: $name"
+    override def toString = s"Department: $name"
 }
 
 object MainObject {
         def main(args:Array[String]) {
-		val toys = Department("Toys") // For case classes no need to use new keyword
-		val toys1 = Department("Toys")
-		println(toys == toys1)
-		println(toys.hashCode == toys1.hashCode)
-		println(toys)
+        val toys = Department("Toys") // For case classes no need to use new keyword
+        val toys1 = Department("Toys")
+        println(toys == toys1)
+        println(toys.hashCode == toys1.hashCode)
+        println(toys)
         }
 }
 ```
@@ -397,6 +397,38 @@ object MainObject {
 ![](/assets/case_classes_output.png)
 
 #### Abstract Classes
+
+* Abstract classes cannot be instantiated
+* Abstract classes have zero or more abstract methods
+* Abstract methods don't have implementations
+
+```scala
+import scala.beans.BeanProperty
+
+abstract class Person {
+	def firstName:String // Abstract method
+	def lastName: String // Abstract method
+}
+
+class Employee(@BeanProperty val firstName: String,
+	       @BeanProperty val lastName: String,
+	val title: String = "Programmer") extends Person {
+	def fullName = s"$firstName $lastName"
+}
+
+object MainObject {
+	def main(args:Array[String]) {
+		val test = new Employee("Alan", "Turing", "Mathematician")
+		println(test.fullName)
+	}
+}
+```
+
+![](/assets/abstract_class_output.png)
+
+Here in Employee class abstract methods `firstName` and `lastName` are defined by default since we have used `val` for the property.
+
+![](/assets/AbstractClass_Methods.png)
 
 
 
