@@ -68,14 +68,14 @@ Scala provides a concept of primary constructor with the definition of class. Yo
 
 ```
 class Employee(val firstName: String, val lastName: String) {
-	def showDetails() = println(firstName + " " + lastName)
+    def showDetails() = println(firstName + " " + lastName)
 }
 
 object MainObject {
-	def main(args:Array[String]) {
-		val test = new Employee("Martin", "Odersky")
-		test.showDetails()
-	}
+    def main(args:Array[String]) {
+        val test = new Employee("Martin", "Odersky")
+        test.showDetails()
+    }
 }
 ```
 
@@ -107,4 +107,33 @@ object MainObject {
 ![](/assets/Scala_Auxiliary_Constructor.png)
 
 ![](/assets/Scala_Auxiliary_Constructor_output.png)
+
+#### Constructor Named and Default Arguments
+
+```scala
+import scala.beans.BeanProperty
+
+class Employee(@BeanProperty val firstName: String,
+               @BeanProperty val lastName: String,
+               val title: String = "Programmer" /* Default Argument */ ) {
+
+        def showDetails() = { println(s"FirstName: $firstName LastName: $lastName Title: $title") }
+}
+
+object MainObject {
+        def main(args:Array[String]) {
+                val test = new Employee(lastName="Odersky", firstName="Martin") // Named Arguments
+                test.showDetails()
+
+                val test_title = new Employee("Dennis", title="Developer", lastName="Ritchie")
+                test_title.showDetails()
+        }
+}
+```
+
+![](/assets/Constructor_Default_and_Named_Arguments_output.png)
+
+
+
+
 
