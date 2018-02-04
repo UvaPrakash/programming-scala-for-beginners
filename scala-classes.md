@@ -8,7 +8,7 @@ Let us create a sample class inside Employee.scala
 class Employee(val firstName: String, val lastName: String)
 ```
 
-We can compile the scala code using \_scalac filename \_which will create a class file.
+We can compile the scala code using `scalac filename` which will create a class file.
 
 ![](/assets/class_compilation.png)
 
@@ -47,6 +47,4 @@ class Employee(@BeanProperty val firstName: String, @BeanProperty var lastName: 
 ```
 
 ![](/assets/getters_and_setters.png)
-
-
 
