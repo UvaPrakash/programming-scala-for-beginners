@@ -406,21 +406,21 @@ object MainObject {
 import scala.beans.BeanProperty
 
 abstract class Person {
-	def firstName:String // Abstract method
-	def lastName: String // Abstract method
+    def firstName:String // Abstract method
+    def lastName: String // Abstract method
 }
 
 class Employee(@BeanProperty val firstName: String,
-	       @BeanProperty val lastName: String,
-	val title: String = "Programmer") extends Person {
-	def fullName = s"$firstName $lastName"
+           @BeanProperty val lastName: String,
+    val title: String = "Programmer") extends Person {
+    def fullName = s"$firstName $lastName"
 }
 
 object MainObject {
-	def main(args:Array[String]) {
-		val test = new Employee("Alan", "Turing", "Mathematician")
-		println(test.fullName)
-	}
+    def main(args:Array[String]) {
+        val test = new Employee("Alan", "Turing", "Mathematician")
+        println(test.fullName)
+    }
 }
 ```
 
@@ -430,5 +430,47 @@ Here in Employee class abstract methods `firstName` and `lastName` are defined b
 
 ![](/assets/AbstractClass_Methods.png)
 
+#### Parameterized Types on Classes
 
+* Paramterized types uses square brackets just like in methods
+* Parameterized types are managed by the type system
+
+```scala
+case class Box[T](t:T)
+
+object MainObject {
+	def main(args:Array[String]) {
+		val res1 = Box(1)
+		val res2:Box[Int] = Box(10)
+		val res3:Int = res2.t
+		val res4 = Box("Hello")
+		val res5 = Box(Box(4.0))
+		val res6:Double = res5.t.t
+		
+		println(s"res1: $res1\nres2: $res2\nres3: $res3\nres4: $res4\nres5: $res5\nres6: $res6")
+	}
+}
+```
+
+![](/assets/parameterized_types_classes_output_1.png)
+
+Below is an example with two different types.
+
+```scala
+case class Couple[A, B](first: A, second: B)
+
+object MainObject {
+	def main(args:Array[String]) {
+		val res1 = Couple(10, "Scala")
+		val res2:Couple[Int, String] = Couple(10, "Scala")
+		val res3 = Couple("One", "Two")
+		val res4 = Couple("Hello", Couple(1, 10.0)) // Couple[String, Couple[Int, Double]]
+		val res5 = res4.second.second
+		
+		println(s"res1: $res1\nres2: $res2\nres3: $res3\nres4: $res4\nres5: $res5")
+	}
+}
+```
+
+![](/assets/parameterized_types_classes_output_2.png)
 
