@@ -170,3 +170,73 @@ object MainObject {
 
 ![](/assets/Methods_in_Classes_output.png)
 
+#### Pre conditions, Exception and Exception Handling
+
+Scala provides four set of pre-conditions- assert, assume, require, ensuring
+
+```scala
+import scala.beans.BeanProperty
+
+class Employee(@BeanProperty val firstName: String,
+               @BeanProperty val lastName: String,
+               val title: String = "Programmer") {
+
+        require(firstName.nonEmpty, "First Name cannot be empty")
+        require(lastName.nonEmpty, "Last Name cannot be empty")
+        require(title.nonEmpty, "Title cannot be empty")
+
+        def showDetails() = { println(s"FirstName: $firstName LastName: $lastName Title: $title") }
+}
+
+object MainObject {
+        def main(args:Array[String]) {
+                val test1 = new Employee(lastName="Odersky", firstName="Martin")
+                test1.showDetails
+
+                val test2 = new Employee("", "", "")
+                test2.showDetails
+        }
+}
+```
+
+Here `test2` contains empty value for firstName, lastName and title. Running the above code will result in **IllegalArgumentException**![](/assets/preconditions_require_output.png)
+
+We can handle the exception using `try catch` block.
+
+```scala
+import scala.beans.BeanProperty
+
+class Employee(@BeanProperty val firstName: String,
+               @BeanProperty val lastName: String,
+               val title: String = "Programmer") {
+
+        require(firstName.nonEmpty, "First Name cannot be empty")
+        require(lastName.nonEmpty, "Last Name cannot be empty")
+        require(title.nonEmpty, "Title cannot be empty")
+
+        if(title.contains("Senior") || title.contains("Junior"))
+                throw new IllegalArgumentException("Title cannot contain Junior or Senior")
+
+        def showDetails() = { println(s"FirstName: $firstName LastName: $lastName Title: $title") }
+}
+
+object MainObject {
+        def main(args:Array[String]) {
+                val test1 = new Employee(lastName="Odersky", firstName="Martin")
+                test1.showDetails
+
+                try {
+                        val test2 = new Employee("Dennis", "Ritchie", "Senior Programmer")
+                }
+                catch {
+                        case iae:IllegalArgumentException => println(iae.getMessage)
+                }
+                finally {
+                        println("Inside finally block")
+                }
+        }
+}
+```
+
+![](/assets/Exception_Handling_Output.png)
+
