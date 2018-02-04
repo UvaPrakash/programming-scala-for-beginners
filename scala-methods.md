@@ -6,7 +6,7 @@ In Scala, methods starts with a keyword 'def'.
 
 Lets create a sample method for adding two numbers. Create BasicMethods.scala with the below contents.
 
-```
+```scala
 // Inefficient way of writing definition
 def add(num1:Int, num2: Int):Int = {
     return num1+num2
@@ -19,7 +19,7 @@ println(add(4,5))
 
 We can refactor the above code to improve readability and make it more efficient.
 
-```
+```scala
 // Efficient way of writing definition
 def add(num1:Int, num2: Int) = num1 + num2
 println(add(4,5))
@@ -79,7 +79,7 @@ Let us create a Factorial program to understand the concept of recursion.
 
 Create a program recursion.scala with the below code.
 
-```
+```scala
 def factorial(n:BigInt):BigInt = {
     if(n == 0 || n == 1) 1
     else n * factorial(n-1)
@@ -108,7 +108,7 @@ We will redefine the above factorial method to be a tail recursive method to avo
 
 Create a file tailRecursion.scala with the below code.
 
-```
+```scala
 import scala.annotation.tailrec
 
 @tailrec
@@ -132,7 +132,7 @@ We can refactor the above code so that we can include method inside another meth
 
 Create a scala program MethodsInMethods.scala
 
-```
+```scala
 import scala.annotation.tailrec
 
 def factorial(n:BigInt) = {
@@ -164,7 +164,7 @@ Operator Overloading is using operators as method names.
 
 Create a script MethodOverloading.scala
 
-```
+```scala
 // addNum is the overloaded method
 
 def addNum(x:Int) = x + 10
@@ -182,7 +182,7 @@ println(addNum("Hello "))
 
 Create a script NamedDefaultArgs.scala
 
-```
+```scala
 def returnNumbers(check:Boolean = true, a:Int, b:Int) = if(check) a else b
 println(returnNumbers(true, 10, 20)) // returns 10
 println(returnNumbers(b=10, a=20, check=false)) //Using named arguments returns 10

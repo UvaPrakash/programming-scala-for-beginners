@@ -60,7 +60,7 @@ Here the lazy val 'b' is getting executed only during its call and not during th
 
 Create a new file ifStatement.scala and paste the below code
 
-```
+```scala
 val a = 1
 val result = if(a<10) "Number is less than 10"
          else if(a>10) "Number is greater than 10" 
@@ -73,7 +73,7 @@ println(result)
 
 #### WHILE, DO WHILE
 
-```
+```scala
 // Program for printing number in reverse
 // Object Oriented Style
 var a = 10
@@ -95,7 +95,7 @@ println((10 to 1 by -1).mkString(","))
 
 ![](/assets/whileStatement.png)**Do While Statement**
 
-```
+```scala
 var a = 10
 var result1 = ""
 
@@ -114,7 +114,7 @@ The difference between while loop and do while loop is that in case of do while 
 
 #### For Loops
 
-```
+```scala
 // Object Oriented Style
 var result = ""
 for(a <- 1 to 10) {
@@ -129,7 +129,7 @@ println(result)
 
 Using for loops to perform operations in List
 
-```
+```scala
 // Using for loops in List to add 1 to every number in List
 val xs = List(1,2,3,4)
 var result1 =  List[Int]()
@@ -142,7 +142,7 @@ println(result1)
 
 The above code can be optimized as below.
 
-```
+```scala
 // Functional Implementation
 val list2 = List(1,2,3,4)
 val result2 = for(b <- list2) yield (b+1)
@@ -153,7 +153,7 @@ println(result2)
 
 #### String Formatting
 
-```
+```scala
 // Older Java style
 val str1 = String.format("This is a %s","Test")
 println(str1)
@@ -178,7 +178,7 @@ printf("We will be eating on %1$tB %1$te in the year %1$tY",LocalDate.now)
 
 #### String Interpolation
 
-```
+```scala
 val a = 99
 val b = 100
 println(s"$a testing")
@@ -191,7 +191,7 @@ println(f"The $bandName%s tickets costs $$$ticketCost%1.2f")
 
 ![](/assets/stringInterpolation.png)
 
-Scala provides three String Interpolation methods-` s, f and raw`
+Scala provides three String Interpolation methods-`s, f and raw`
 
 * Prepending `s` to any string literal allows the usage of variables directly in the string.
 
@@ -200,8 +200,4 @@ Scala provides three String Interpolation methods-` s, f and raw`
 * The `raw`  interpolator is similar to the `s` interpolator except that it performs no escaping of literals within the string.
 
 ![](/assets/scala_string_interpolation.png)
-
-
-
-
 

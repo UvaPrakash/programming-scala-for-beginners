@@ -32,13 +32,13 @@ Let us create a Scala script to print "Hello World".
 
 Create a script named HelloWorld.scala with the below println statement.
 
-```
+```scala
 println("Hello World!!!")
 ```
 
 Run the below command to interpret the Scala script
 
-```
+```bash
 scala HelloWorld.scala
 ```
 
