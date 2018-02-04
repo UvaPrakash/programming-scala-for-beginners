@@ -242,7 +242,7 @@ object MainObject {
 
 #### Subclasses
 
-* extends is a keyword used to subclass a class from another class
+* `extends` is a keyword used to subclass a class from another class
 * Inheritance must have "is-a" relationship
 * We can have multiple classes in a single file
 
@@ -270,6 +270,46 @@ object MainObject {
 ```
 
 ![](/assets/subclasses_output.png)
+
+#### Method Overriding
+
+* `override` keyword is mandatory
+* Overridden methods must look the same as superclass method it is overriding
+* Overridden methods are created to change the implementation of the superclass's methods
+* Regardless of reference, correct method will be called
+
+```scala
+import scala.beans.BeanProperty
+
+class Employee(@BeanProperty val firstName: String,
+               @BeanProperty val lastName: String,
+               val title: String = "Programmer") {
+
+        def fullName = s"$firstName $lastName"
+}
+
+class Department(val name: String)
+
+class Manager(firstName: String, lastName: String, title: String, val department: Department) extends
+      Employee(firstName, lastName, title) {
+        override def fullName = s"$firstName $lastName ${department.name}" // Overridden Method
+}
+
+object MainObject {
+        def main(args:Array[String]) {
+                val mathematics = new Department("Mathematics")
+                val test_manager:Manager = new Manager("Alan", "Turing", "Mathematician", mathematics)
+                println(test_manager.fullName)
+
+                val test_employee:Employee = test_manager
+                println(test_employee.fullName)
+        }
+}
+```
+
+![](/assets/Method_Overriding_Output.png)
+
+#### equals, toString, hashCode
 
 
 
