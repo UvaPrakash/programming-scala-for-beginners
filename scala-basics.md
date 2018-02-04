@@ -191,3 +191,17 @@ println(f"The $bandName%s tickets costs $$$ticketCost%1.2f")
 
 ![](/assets/stringInterpolation.png)
 
+Scala provides three String Interpolation methods-` s, f and raw`
+
+* Prepending `s` to any string literal allows the usage of variables directly in the string.
+
+* Prepending `f` to any string literal allows the creation of simple formatted strings similar to printf in other languages.
+
+* The `raw`  interpolator is similar to the `s` interpolator except that it performs no escaping of literals within the string.
+
+![](/assets/scala_string_interpolation.png)
+
+
+
+
+
