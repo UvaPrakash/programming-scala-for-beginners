@@ -324,45 +324,79 @@ class Employee(@BeanProperty val firstName: String,
                @BeanProperty val lastName: String,
                val title: String = "Programmer") {
 
-	override def equals(x:Any):Boolean = {
-		if(!x.isInstanceOf[Employee]) false
-		else {
-			val other = x.asInstanceOf[Employee]
-			other.firstName == this.firstName &&
-			other.lastName == this.lastName &&
-			other.title == this.title
-		}
-	}
+    override def equals(x:Any):Boolean = {
+        if(!x.isInstanceOf[Employee]) false
+        else {
+            val other = x.asInstanceOf[Employee]
+            other.firstName == this.firstName &&
+            other.lastName == this.lastName &&
+            other.title == this.title
+        }
+    }
 
-	override def hashCode:Int = {
-		var result = 19
-		result = 31 * result + firstName.hashCode
-		result = 31 * result + lastName.hashCode
-		result = 31 * result + title.hashCode
-		result
-	}
+    override def hashCode:Int = {
+        var result = 19
+        result = 31 * result + firstName.hashCode
+        result = 31 * result + lastName.hashCode
+        result = 31 * result + title.hashCode
+        result
+    }
 
-	override def toString = s"Employee($firstName, $lastName, $title)"
+    override def toString = s"Employee($firstName, $lastName, $title)"
 }
 
 object MainObject {
         def main(args:Array[String]) {
-		val test = new Employee("Dennis", "Ritchie", "Programmer")
-		val test1 = new Employee("Dennis", "Ritchie", "Programmer")
-		val test2 = test1
+        val test = new Employee("Dennis", "Ritchie", "Programmer")
+        val test1 = new Employee("Dennis", "Ritchie", "Programmer")
+        val test2 = test1
 
-		println(test == test1) // true
-		println(test1 == test2) // true
-		println(test eq test1) // false
-		println(test1 eq test2) // true
-		println(test.hashCode == test1.hashCode) // true
-		println(test1.hashCode == test2.hashCode) // true
-		println(test2) // by default println uses toString
+        println(test == test1) // true
+        println(test1 == test2) // true
+        println(test eq test1) // false
+        println(test1 eq test2) // true
+        println(test.hashCode == test1.hashCode) // true
+        println(test1.hashCode == test2.hashCode) // true
+        println(test2) // by default println uses toString
         }
 }
 ```
 
 ![](/assets/equals_output.png)
+
+#### Case Classes
+
+* Placing `case` keyword in front of class makes it a case class
+* Case class have an automatic `equals`, `hashCode` and `toString`
+
+How does a case class differ from normal class?
+
+* You can do pattern matching on it
+* You can construct instances of these classes without using the`new`keyword
+* All constructor arguments are accessible from outside using automatically generated accessor functions
+* The`toString`method is automatically redefined to print the name of the case class and all its arguments
+* The`equals`method is automatically redefined to compare two instances of the same case class structurally rather than by identity.
+* The`hashCode`method is automatically redefined to use the`hashCode`of constructor arguments.
+
+```scala
+case class Department(name: String) {
+	override def toString = s"Department: $name"
+}
+
+object MainObject {
+        def main(args:Array[String]) {
+		val toys = Department("Toys") // For case classes no need to use new keyword
+		val toys1 = Department("Toys")
+		println(toys == toys1)
+		println(toys.hashCode == toys1.hashCode)
+		println(toys)
+        }
+}
+```
+
+![](/assets/case_classes_output.png)
+
+#### Abstract Classes
 
 
 
