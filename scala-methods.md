@@ -90,7 +90,7 @@ println(factorial(5))
 
 ![](/assets/recursion_factorial.png)
 
-Every recurs­ive func­tion has a \_base case \_and a \_recurs­ive case. \_The base case is the smal­lest piece, the prob­lem that we can solve right away. In this case it is the factorial of 0 or 1, which equals 1. The recurs­ive case is used to sim­plify the prob­lem by call­ing the same func­tion recurs­ively, until it reaches the base case.
+Every recurs­ive func­tion has a _base case_ and a _recurs­ive case_. The base case is the smal­lest piece, the prob­lem that we can solve right away. In this case it is the factorial of 0 or 1, which equals 1. The recurs­ive case is used to sim­plify the prob­lem by call­ing the same func­tion recurs­ively, until it reaches the base case.
 
 When running factorial\(10000\) the method throws StackOverflowError.
 
