@@ -5,4 +5,5 @@
 * [Scala Basics](scala-basics.md)
 * [Scala Methods](scala-methods.md)
 * [Scala Classes](scala-classes.md)
+* [Scala Objects](scala-objects.md)
 
