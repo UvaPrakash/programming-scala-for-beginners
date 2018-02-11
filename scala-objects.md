@@ -67,6 +67,23 @@ object CompanionObject{
 
 ![](/assets/Companion_Class.png)
 
+```scala
+// Companion Class
+class Person(val name: String, private val superheroName: String)
+
+// Companion Object
+object Person {
+	def showName(x: Person) = x.superheroName
+}
+
+object Runner extends App {
+	val test = new Person("ABC", "Superman")
+	println(Person.showName(test))
+}
+```
+
+![](/assets/Companion_Objects.png)
+
 * Companion objects have the same name as the class they represent
 * Companion objects must be in the same file as the class they represent
 * Companion objects have access to their representative class's private information
