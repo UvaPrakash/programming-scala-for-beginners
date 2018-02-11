@@ -43,7 +43,18 @@ object Sample {
 * Main methods are always inside of Objects
 * You can forgo the main declaration by having your object extends `App`
 
+#### Companion Objects
 
+Most singleton objects do not stand alone, but instead are associated with a class of the same name. 
+
+In scala, when you have a class with same name as singleton object, it is called companion class and the singleton object is called companion object.
+
+The companion class and its companion object both must be defined in the same source file.
+
+* Companion objects have the same name as the class they represent
+* Companion objects must be in the same file as the class they represent
+* Companion objects have access to their representative class's private information
+* Classes have acess to the companion object's private information
 
 
 
