@@ -45,11 +45,27 @@ object Sample {
 
 #### Companion Objects
 
-Most singleton objects do not stand alone, but instead are associated with a class of the same name. 
+Most singleton objects do not stand alone, but instead are associated with a class of the same name.
 
 In scala, when you have a class with same name as singleton object, it is called companion class and the singleton object is called companion object.
 
 The companion class and its companion object both must be defined in the same source file.
+
+```scala
+class CompanionClass{  
+    def hello(){  
+        println("Hello, this is Companion Class.")  
+    }  
+}  
+object CompanionObject{  
+    def main(args:Array[String]){  
+        new CompanionClass().hello()  
+        println("Hello, this is Companion Object.")  
+    }  
+}
+```
+
+![](/assets/Companion_Class.png)
 
 * Companion objects have the same name as the class they represent
 * Companion objects must be in the same file as the class they represent
