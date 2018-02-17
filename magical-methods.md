@@ -61,25 +61,25 @@ Let us use infix operator for two arguments
 
 ```scala
 class Foo(x:Int) {
-	def bar(y:Int) = x + y
-	def bar2(a:Int, b:Int) = x + a + b
-	def bar_object(z:Int) = new Foo(x + z)
+    def bar(y:Int) = x + y
+    def bar2(a:Int, b:Int) = x + a + b
+    def bar_object(z:Int) = new Foo(x + z)
 }
 
 object InfixOperatorsRunner extends App {
-	val foo = new Foo(10)
-	
-	// Single argument
-	println(foo.bar(20)) // Classic way
-	println(foo bar 20) // Infix way
-	
-	// Two arguments
-	println(foo.bar2(10, 20)) // Classic way
-	println(foo bar2 (10, 20)) // Infix way
+    val foo = new Foo(10)
 
-	// Complex operations
-	println(foo bar 5 + 10) // 15 + 10 = 25
-	println(foo bar_object 4 bar 40 + 300) // 14 + 40 + 300 = 354
+    // Single argument
+    println(foo.bar(20)) // Classic way
+    println(foo bar 20) // Infix way
+
+    // Two arguments
+    println(foo.bar2(10, 20)) // Classic way
+    println(foo bar2 (10, 20)) // Infix way
+
+    // Complex operations
+    println(foo bar 5 + 10) // 15 + 10 = 25
+    println(foo bar_object 4 bar 40 + 300) // 14 + 40 + 300 = 354
 }
 ```
 
@@ -88,4 +88,39 @@ object InfixOperatorsRunner extends App {
 This is similar to the below code
 
 ![](/assets/Infix_Operators_3.png)
+
+#### Right Associative Colons
+
+* If the method ends in a colon, you may invoke it in a right associative way
+* In order to invoke it in a right associative way, it must be invoked as an infix method
+* Right associativity is primarily used with `List` and `Stream` operations
+
+```scala
+object RightAssociativeColons extends App {
+	class Foo(x:Int) {
+		def bar(y:Int)	= x + y
+	}
+
+	val foo = new Foo(10)
+	println(foo.bar(5))
+}
+```
+
+![](/assets/Right_Associative_Colons_1.png)
+
+```scala
+object RightAssociativeColons extends App {
+	class Foo(x:Int) {
+	     def ~:(y:Int)	= x + y
+	}
+
+	val foo = new Foo(10)
+	println(foo.~:(5)) // Classic way
+	println(5 ~: foo) //Right Associative Colon. Infix way
+}
+```
+
+![](/assets/Right_Associative_Colons_2.png)
+
+
 
