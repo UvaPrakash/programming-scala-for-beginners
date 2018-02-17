@@ -6,12 +6,12 @@ Let us create a sampe method named `bar` to understand the concept of `apply` me
 
 ```scala
 class Foo(x:Int) {
-	def bar(y:Int) = x + y
+    def bar(y:Int) = x + y
 }
 
 object MagicApply extends App {
-	val foo = new Foo(10)
-	println(foo.bar(20))
+    val foo = new Foo(10)
+    println(foo.bar(20))
 }
 ```
 
@@ -21,13 +21,13 @@ Let us modify the method named `bar` to `apply`
 
 ```scala
 class Foo(x:Int) {
-	def apply(y:Int) = x + y
+    def apply(y:Int) = x + y
 }
 
 object MagicApply extends App {
-	val foo = new Foo(10)
-	println(foo.apply(20))
-	println(foo(20)) // Same as foo.apply(20)
+    val foo = new Foo(10)
+    println(foo.apply(20))
+    println(foo(20)) // Same as foo.apply(20)
 }
 ```
 
@@ -38,5 +38,54 @@ object MagicApply extends App {
 
 #### Infix Operators
 
+* Infix operators allows a method to be invoked to be invoked without the dot or paranthesis
+* Infix operators will work if the method has one parameter
+* It can somewhat work with more than one parameter, but the parameters would have to be inside paranthesis
+* Mathematical operations in Scala use infix operators
 
+```scala
+class Foo(x:Int) {
+    def bar(y:Int) = x + y
+}
+
+object InfixOperatorsRunner extends App {
+    val foo = new Foo(10)
+    println(foo.bar(20)) // Classic way
+    println(foo bar 20) // Infix way
+}
+```
+
+![](/assets/Infix_Operators_1.png)
+
+Let us use infix operator for two arguments
+
+```scala
+class Foo(x:Int) {
+	def bar(y:Int) = x + y
+	def bar2(a:Int, b:Int) = x + a + b
+	def bar_object(z:Int) = new Foo(x + z)
+}
+
+object InfixOperatorsRunner extends App {
+	val foo = new Foo(10)
+	
+	// Single argument
+	println(foo.bar(20)) // Classic way
+	println(foo bar 20) // Infix way
+	
+	// Two arguments
+	println(foo.bar2(10, 20)) // Classic way
+	println(foo bar2 (10, 20)) // Infix way
+
+	// Complex operations
+	println(foo bar 5 + 10) // 15 + 10 = 25
+	println(foo bar_object 4 bar 40 + 300) // 14 + 40 + 300 = 354
+}
+```
+
+![](/assets/Infix_Operators_2.png)
+
+This is similar to the below code
+
+![](/assets/Infix_Operators_3.png)
 
