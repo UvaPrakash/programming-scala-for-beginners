@@ -73,12 +73,12 @@ class Person(val name: String, private val superheroName: String)
 
 // Companion Object
 object Person {
-	def showName(x: Person) = x.superheroName
+    def showName(x: Person) = x.superheroName
 }
 
 object Runner extends App {
-	val test = new Person("ABC", "Superman")
-	println(Person.showName(test))
+    val test = new Person("ABC", "Superman")
+    println(Person.showName(test))
 }
 ```
 
