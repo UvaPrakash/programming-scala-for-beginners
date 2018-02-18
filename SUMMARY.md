@@ -8,4 +8,5 @@
 * [Scala Objects](scala-objects.md)
 * [Magical Methods](magical-methods.md)
 * [Scala Options](scala-options.md)
+* [Scala Tuples](scala-tuples.md)
 
