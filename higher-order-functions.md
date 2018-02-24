@@ -83,8 +83,6 @@ object Functions extends App {
 
 ![](/assets/MethodsandFunctions_1.png)
 
-
-
 * Methods belong to a context
 * Functions are their own objects
 * One difference is that methods are invoked on objects unlike functions. With functions you call them and pass arguments while with methods you invoke them on an object and pass arguments
@@ -93,18 +91,30 @@ object Functions extends App {
 
 ```scala
 object MyObject {
-	val f = (x:Int) => x + 1 // Function
-	def g(x:Int) = x + 1 // Method
+    val f = (x:Int) => x + 1 // Function
+    def g(x:Int) = x + 1 // Method
 }
 
 object MethodsandFunctions extends App {
-	println(MyObject.f.apply(10)) // Invoking function
-	println(MyObject.f(10)) // Same as f.apply(10)
-	println(MyObject.g(10)) // Invoking method
+    println(MyObject.f.apply(10)) // Invoking function
+    println(MyObject.f(10)) // Same as f.apply(10)
+    println(MyObject.g(10)) // Invoking method
 }
 ```
 
 ![](/assets/MethodsandFunctions_2.png)
+
+#### Partially Applied Functions
+
+In functional programming languages, calling a function with parameters is to apply the function to the parameters. When all the parameters are passed to the function we have fully applied the function to all the parameters.
+
+```scala
+val add = (x: Int, y: Int) => x + y
+```
+
+But when we give only a subset of the parameters to the function, the result of the expression is a partially applied function.
+
+![](/assets/PartiallyAppliedFunctions.png)
 
 #### Converting a Method to a Function
 
@@ -116,25 +126,25 @@ object MethodsandFunctions extends App {
 
 ```scala
 class MyClass(x:Int) {
-	def method1(y:Int) = x + y
+    def method1(y:Int) = x + y
 }
 
 class MyClass2(z:Int) {
-	def method2(f:Int => Int) = f(z)
+    def method2(f:Int => Int) = f(z)
 }
 
 object ConvertDefToFunction extends App {
-	val x = new MyClass(10)
-	val f = x.method1 _ // Converting Method to Function (Partially Applied Functions)
-	
-	println(f.apply(20))
-	println(f(20)) // Same as f.apply(20) // 30
+    val x = new MyClass(10)
+    val f = x.method1 _ // Converting Method to Function (Partially Applied Functions)
 
-	val z = new MyClass2(20)
-	println(z.method2(f)) // 30
-	println(z.method2(x.method1 _)) // Replacing f with x.bar _ // 30
-	
-	println(z.method2(x.method1)) // If _ is the last character in the method call we can ignore that // 30
+    println(f.apply(20))
+    println(f(20)) // Same as f.apply(20) // 30
+
+    val z = new MyClass2(20)
+    println(z.method2(f)) // 30
+    println(z.method2(x.method1 _)) // Replacing f with x.bar _ // 30
+
+    println(z.method2(x.method1)) // If _ is the last character in the method call we can ignore that // 30
 }
 ```
 
@@ -142,28 +152,44 @@ object ConvertDefToFunction extends App {
 
 ```scala
 class MyClass(x:Int) {
-	def method1(y:Int) = x + y
-	def method2(z:Int, a:Int) = x + z + a
+    def method1(y:Int) = x + y
+    def method2(z:Int, a:Int) = x + z + a
 }
 
 class MyClass2(z:Int) {
-	def method3(f:Int => Int) = f(z)
-	def method4(f:(Int, Int) => Int) = f(z, 10)
+    def method3(f:Int => Int) = f(z)
+    def method4(f:(Int, Int) => Int) = f(z, 10)
 }
 
 object ConvertDefToFunction extends App {
-	val x = new MyClass(10)
-	val z = new MyClass2(20)
+    val x = new MyClass(10)
+    val z = new MyClass2(20)
 
-	val f = x.method1 _ // Converting Method to Function (Partially Applied Functions)
-	val f2 = x.method2(40, _:Int) // Converting to a Function
+    val f = x.method1 _ // Converting Method to Function (Partially Applied Functions)
+    val f2 = x.method2(40, _:Int) // Converting to a Function
 
-	println(z.method3(f2)) // 20+10+40 = 70
-	println(z.method4(x.method2)) // 20+10+10 = 40
+    println(z.method3(f2)) // 20+10+40 = 70
+    println(z.method4(x.method2)) // 20+10+10 = 40
 }
 ```
 
 ![](/assets/ConvertDefToFunction_2.png)
+
+#### Closures
+
+* A **closure **is a function, whose return value depends on the value of one or more variables declared outside this function
+* Closures are functions that close around the environment
+* It is best to enclose around something that is stable eg. val
+
+```scala
+object Main extends App { 
+    val y = 3
+    val multiplier = (x:Int) => x * y // Closure
+    println(multiplier(3))
+}
+```
+
+![](/assets/Closures.png)
 
 
 
