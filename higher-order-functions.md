@@ -191,5 +191,47 @@ object Main extends App {
 
 ![](/assets/Closures.png)
 
+#### Functions With Functions
+
+* Functions can take other functions in as parameter, higher order functions
+* Higher order function, the term is also used to describe when a method can take a function
+* Functions can also return other functions, useful for applying functions in parts
+
+```scala
+object FunctionsWithFunctions extends App {
+	val f = (x:Int, y:Int => Int) => y(x)
+	println(f(3, (m: Int) => m+1))
+	println(f(3, m => m+1))
+	println(f(3, _ + 1)) // Same as above
+	println(f(3, 1 +  _))
+	println(f(3, 1+)) // If _ is last character then it can be removed. This will generate a warning
+}
+```
+
+![](/assets/FunctionsWithFunctions_1.png)
+
+In order to eliminate the warning we need to add the import clause `import scala.language.postfixOps`
+
+```scala
+object FunctionsWithFunctions extends App {
+	val f = (x:Int, y:Int => Int) => y(x)
+	println(f(3, (m: Int) => m+1))
+	println(f(3, m => m+1))
+	println(f(3, _ + 1)) // Same as above
+	println(f(3, 1 +  _))
+	
+	import scala.language.postfixOps
+	println(f(3, 1+)) // If _ is last character then it can be removed
+
+	println("#######################")
+
+	val g = (x:Int) => (y:Int) => x + y
+	println(g.apply(2).apply(3))
+	println(g(2)(3))
+}
+```
+
+![](/assets/FunctionsWithFunctions_2.png)
+
 
 
