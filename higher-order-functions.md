@@ -244,15 +244,86 @@ object FunctionsWithFunctions extends App {
 
 ```scala
 object Currying extends App {
-	val g = (x: Int) => (y: Int) => x + y
-	val f = (x:Int, y:Int) => x + y
-	val fc = f.curried // g and fc are same
-	val f2 = Function.uncurried(fc) // f and f2 are same
-	println(f2(4,5))
+    val g = (x: Int) => (y: Int) => x + y
+    val f = (x:Int, y:Int) => x + y
+    val fc = f.curried // g and fc are same
+    val f2 = Function.uncurried(fc) // f and f2 are same
+    println(f2(4,5))
 }
 ```
 
 ![](/assets/Currying_2.png)
+
+#### Curried Method Parameters
+
+* Curried Parameters form groups of parameters
+* Curried parameters makes partially applying them easier
+* Curried parameters are often used with `implicits`
+
+![](/assets/Curried_Parameters_1.png)
+
+```scala
+object CurriedParameters extends App {
+	def m1(x:Int, y:Int, z:Int) = x + y + z
+	def m2(x:Int)(y:Int)(z:Int) = x + y + z
+	def m3(x:Int, y:Int)(z:Int) = x + y + z
+
+	val f = m1(5, _:Int, _:Int)
+	val g = m2(5) _
+
+	println(f(4,6))
+	println(g(6)(5))
+	println(g.apply(6).apply(5))
+}
+```
+
+![](/assets/CurriedParameters_2.png)
+
+#### By Name parameters
+
+* By Name parameters are parameters that can be called by block and lazily evaluated
+* By Name parameters are outstanding for catching exceptions and cleaning up resources
+
+```scala
+object ByNameParameters extends App {
+	def byValue(x:Int)(y:Int) = { println("By Value"); x + y }
+	def byFunction(x:Int)(y: () => Int) = { println("By Function"); x + y() }
+	def byName(x:Int)(y: => Int) = { println("By Name"); x + y }
+
+	val a = byValue(5) { println("Inside byValue call"); 10}
+	val b = byFunction(5)(() => { println("Inside byFunction call"); 10})
+	val c = byName(5) { println("Inside byName call"); 10}
+}
+```
+
+![](/assets/byName_1.png)
+
+```scala
+object ByNameParameters extends App {
+	def byValue(x:Int)(y:Int) = { println("By Value"); x + y }
+	def byFunction(x:Int)(y: () => Int) = { println("By Function"); x + y() }
+	def byName(x:Int)(y: => Int) = { println("By Name"); x + y }
+
+	val a = byValue(5) { println("Inside byValue call"); 10}
+	val b = byFunction(5)(() => { println("Inside byFunction call"); 10})
+	val c = byName(5) { println("Inside byName call"); 10}
+
+	def divideSafely(f: => Int):Option[Int] = {
+		try {
+			Some(f)
+		} catch {
+			case ae:ArithmeticException => None		
+		}
+	}
+
+	val d = divideSafely {10/5}
+	println(d)
+	val e = divideSafely {10/0}
+	println(e)
+}
+```
+
+![](/assets/byName_2.png)
 
 
 
