@@ -66,18 +66,104 @@ object Functions extends App {
 ![](/assets/Functions_3.png)
 
 * Functions are traits \(pure abstract\) that is instantiated anonymously
-* apply method in the function means that you don't have to call it explicitly
+* `apply` method in the function means that you don't have to call it explicitly
 * While you can return only one item, that one item can be a tuple if you need to return multiple items
 
 ```scala
 object Functions extends App {
-	// Returning a Tuple
-	val f3 = (s:String) => (s, s.size)
-	println(f3("Hello"))
+    // Returning a Tuple
+    val f3 = (s:String) => (s, s.size)
+    println(f3("Hello"))
 }
 ```
 
 ![](/assets/Functions_4.png)
+
+#### Difference between Methods and Functions
+
+![](/assets/MethodsandFunctions_1.png)
+
+
+
+* Methods belong to a context
+* Functions are their own objects
+* One difference is that methods are invoked on objects unlike functions. With functions you call them and pass arguments while with methods you invoke them on an object and pass arguments
+
+* Another difference is that functions can be assigned to variables while methods can not be assigned to variables.
+
+```scala
+object MyObject {
+	val f = (x:Int) => x + 1 // Function
+	def g(x:Int) = x + 1 // Method
+}
+
+object MethodsandFunctions extends App {
+	println(MyObject.f.apply(10)) // Invoking function
+	println(MyObject.f(10)) // Same as f.apply(10)
+	println(MyObject.g(10)) // Invoking method
+}
+```
+
+![](/assets/MethodsandFunctions_2.png)
+
+#### Converting a Method to a Function
+
+* Methods can be converted to functions using Partially Applied Functions
+* Use an underscore to turn method parameters to function parameters
+* If an underscore is the last character in a method parameter, you can remove the underscore
+
+![](/assets/ConvertingDefToFunctions_REPL.png)
+
+```scala
+class MyClass(x:Int) {
+	def method1(y:Int) = x + y
+}
+
+class MyClass2(z:Int) {
+	def method2(f:Int => Int) = f(z)
+}
+
+object ConvertDefToFunction extends App {
+	val x = new MyClass(10)
+	val f = x.method1 _ // Converting Method to Function (Partially Applied Functions)
+	
+	println(f.apply(20))
+	println(f(20)) // Same as f.apply(20) // 30
+
+	val z = new MyClass2(20)
+	println(z.method2(f)) // 30
+	println(z.method2(x.method1 _)) // Replacing f with x.bar _ // 30
+	
+	println(z.method2(x.method1)) // If _ is the last character in the method call we can ignore that // 30
+}
+```
+
+![](/assets/ConvertingDefToFunction.png)
+
+```scala
+class MyClass(x:Int) {
+	def method1(y:Int) = x + y
+	def method2(z:Int, a:Int) = x + z + a
+}
+
+class MyClass2(z:Int) {
+	def method3(f:Int => Int) = f(z)
+	def method4(f:(Int, Int) => Int) = f(z, 10)
+}
+
+object ConvertDefToFunction extends App {
+	val x = new MyClass(10)
+	val z = new MyClass2(20)
+
+	val f = x.method1 _ // Converting Method to Function (Partially Applied Functions)
+	val f2 = x.method2(40, _:Int) // Converting to a Function
+
+	println(z.method3(f2)) // 20+10+40 = 70
+	println(z.method4(x.method2)) // 20+10+10 = 40
+}
+```
+
+![](/assets/ConvertDefToFunction_2.png)
 
 
 
