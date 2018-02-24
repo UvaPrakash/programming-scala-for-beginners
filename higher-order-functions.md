@@ -199,12 +199,12 @@ object Main extends App {
 
 ```scala
 object FunctionsWithFunctions extends App {
-	val f = (x:Int, y:Int => Int) => y(x)
-	println(f(3, (m: Int) => m+1))
-	println(f(3, m => m+1))
-	println(f(3, _ + 1)) // Same as above
-	println(f(3, 1 +  _))
-	println(f(3, 1+)) // If _ is last character then it can be removed. This will generate a warning
+    val f = (x:Int, y:Int => Int) => y(x)
+    println(f(3, (m: Int) => m+1))
+    println(f(3, m => m+1))
+    println(f(3, _ + 1)) // Same as above
+    println(f(3, 1 +  _))
+    println(f(3, 1+)) // If _ is last character then it can be removed. This will generate a warning
 }
 ```
 
@@ -214,24 +214,45 @@ In order to eliminate the warning we need to add the import clause `import scala
 
 ```scala
 object FunctionsWithFunctions extends App {
-	val f = (x:Int, y:Int => Int) => y(x)
-	println(f(3, (m: Int) => m+1))
-	println(f(3, m => m+1))
-	println(f(3, _ + 1)) // Same as above
-	println(f(3, 1 +  _))
-	
-	import scala.language.postfixOps
-	println(f(3, 1+)) // If _ is last character then it can be removed
+    val f = (x:Int, y:Int => Int) => y(x)
+    println(f(3, (m: Int) => m+1))
+    println(f(3, m => m+1))
+    println(f(3, _ + 1)) // Same as above
+    println(f(3, 1 +  _))
 
-	println("#######################")
+    import scala.language.postfixOps
+    println(f(3, 1+)) // If _ is last character then it can be removed
 
-	val g = (x:Int) => (y:Int) => x + y
-	println(g.apply(2).apply(3))
-	println(g(2)(3))
+    println("#######################")
+
+    val g = (x:Int) => (y:Int) => x + y
+    println(g.apply(2).apply(3))
+    println(g(2)(3))
 }
 ```
 
 ![](/assets/FunctionsWithFunctions_2.png)
+
+#### Currying
+
+* Currying is taking set of arguments and turning them into a sequence of functions returning functions
+* You can convert a uncurried function into a curried function by calling `curried` on that function
+* Use `Function.uncurried` to uncurry a function
+* Currying is named after mathematician Haskell Curry
+
+![](/assets/Currying_1.png)
+
+```scala
+object Currying extends App {
+	val g = (x: Int) => (y: Int) => x + y
+	val f = (x:Int, y:Int) => x + y
+	val fc = f.curried // g and fc are same
+	val f2 = Function.uncurried(fc) // f and f2 are same
+	println(f2(4,5))
+}
+```
+
+![](/assets/Currying_2.png)
 
 
 
