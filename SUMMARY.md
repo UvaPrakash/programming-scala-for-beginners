@@ -11,5 +11,5 @@
 * [Scala Tuples](scala-tuples.md)
 * [Higher Order Functions](higher-order-functions.md)
 * [Collection Basics](collection-basics.md)
-* Collections with Functions
+* [Collections with Functions](collections-with-functions.md)
 
