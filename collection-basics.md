@@ -86,31 +86,31 @@ String Interning is a method of storing only one copy of each distinct String Va
 
 ```scala
 object Maps extends App {
-	val m1 = Map.apply((1,"One"), (2,"Two"), (3,"Three"))
-	val m2 = Map((1,"One"), (2,"Two"), (3,"Three")) // Other way of defining map
-	val m3 = Map(1 -> "One", 2 -> "Two", 3 -> "Three") // Other way of defining map
+    val m1 = Map.apply((1,"One"), (2,"Two"), (3,"Three"))
+    val m2 = Map((1,"One"), (2,"Two"), (3,"Three")) // Other way of defining map
+    val m3 = Map(1 -> "One", 2 -> "Two", 3 -> "Three") // Other way of defining map
 
-	println(m3.get(1)) // Some(One)
-	println(m3.apply(1)) // One
-	println(m3(1)) // Same as m3.apply(1)
-	println(m3.get(4)) // None
-	// println(m3(4)) // Error java.util.NoSuchElementException: key not found: 4
-	
-	println(m3.toList)
-	println(m3.keys) // Set
-	println(m3.keySet) // Set
- 	println(m3.values) // MapLike
-	println(m3.values.toSet) // Set
-	println(m3.values.toList) // List
+    println(m3.get(1)) // Some(One)
+    println(m3.apply(1)) // One
+    println(m3(1)) // Same as m3.apply(1)
+    println(m3.get(4)) // None
+    // println(m3(4)) // Error java.util.NoSuchElementException: key not found: 4
 
-	val co1 = Symbol("Co")
-	val co2 = 'Co
-	println(co1 == co2) // true
-	println(co1 eq co2) // true
+    println(m3.toList)
+    println(m3.keys) // Set
+    println(m3.keySet) // Set
+     println(m3.values) // MapLike
+    println(m3.values.toSet) // Set
+    println(m3.values.toList) // List
 
-	// Map with Symbols
-	val elements:Map[Symbol, String] = Map('Co -> "Cobalt", 'H -> "Helium", 'Pb -> "Lead")
-	println(elements.get('Co)) // Some(Cobalt)
+    val co1 = Symbol("Co")
+    val co2 = 'Co
+    println(co1 == co2) // true
+    println(co1 eq co2) // true
+
+    // Map with Symbols
+    val elements:Map[Symbol, String] = Map('Co -> "Cobalt", 'H -> "Helium", 'Pb -> "Lead")
+    println(elements.get('Co)) // Some(Cobalt)
 }
 ```
 
@@ -121,9 +121,7 @@ object Maps extends App {
 * Arrays in Scala are converted to a primitive array on the JVM
 * Behaviour wise in Scala, they are similar to Lists
 * Arrays are mutable
-* Repeated Parameters uses an Array to hold possible extra elements
-
-
+* Repeated Parameters uses an Array to hold possible extra parameters
 
 
 
