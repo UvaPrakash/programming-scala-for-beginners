@@ -10,4 +10,5 @@
 * [Scala Options](scala-options.md)
 * [Scala Tuples](scala-tuples.md)
 * [Higher Order Functions](higher-order-functions.md)
+* [Collection Basics](collection-basics.md)
 
