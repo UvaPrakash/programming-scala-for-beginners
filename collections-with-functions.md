@@ -105,28 +105,28 @@ object ForEachMethod extends App {
 
 ```scala
 object FlatMap extends App {
-	val a = List(1,2,3,4)
-	println(a.map(x => List(-x, 0, x)))
-	println(a.map(x => List(-x, 0, x)).flatten)
-	println(a.flatMap(x => List(-x, 0, x)))
+    val a = List(1,2,3,4)
+    println(a.map(x => List(-x, 0, x)))
+    println(a.map(x => List(-x, 0, x)).flatten)
+    println(a.flatMap(x => List(-x, 0, x)))
 
-	val b = List(List(List(1,2,3), List(4,5,6)), List(List(7,8,9), List(10,11,12)))
-	println(b.flatMap(c => c))
-	println(b.flatMap(c => c).flatMap(c => c))
+    val b = List(List(List(1,2,3), List(4,5,6)), List(List(7,8,9), List(10,11,12)))
+    println(b.flatMap(c => c))
+    println(b.flatMap(c => c).flatMap(c => c))
 
-	println(Set(2,4,6,8,10).flatMap(x => Set(x, x * 5)))
+    println(Set(2,4,6,8,10).flatMap(x => Set(x, x * 5)))
 
-	val m = Map(1 -> "One", 2 -> "Two", 3 -> "Three")
-	println(m.flatMap(t => Map(t._1 -> t._2, (t._1 * 100) -> (t._2 + " Hundred"))))
+    val m = Map(1 -> "One", 2 -> "Two", 3 -> "Three")
+    println(m.flatMap(t => Map(t._1 -> t._2, (t._1 * 100) -> (t._2 + " Hundred"))))
 
-	println(Some(5).map(x => Some(x + 10)))
-	println(Some(5).flatMap(x => Some(x + 10)))
+    println(Some(5).map(x => Some(x + 10)))
+    println(Some(5).flatMap(x => Some(x + 10)))
 
-	// println(None.flatMap(x => Some(x + 10))) // Error
-	println(None.asInstanceOf[Option[Int]].flatMap(x => Some(x + 10)))
-	println(Some(10).flatMap(x => None))
-	
-	println(List(Some(1), Some(2), None, Some(3), None, Some(4)).flatMap(x => x))
+    // println(None.flatMap(x => Some(x + 10))) // Error
+    println(None.asInstanceOf[Option[Int]].flatMap(x => Some(x + 10)))
+    println(Some(10).flatMap(x => None))
+
+    println(List(Some(1), Some(2), None, Some(3), None, Some(4)).flatMap(x => x))
 }
 ```
 
@@ -140,33 +140,33 @@ object FlatMap extends App {
 
 ```scala
 object ForComprehensions extends App {
-	for(i <- 1 to 5) {
-		println(i)	
-	}
+    for(i <- 1 to 5) {
+        println(i)    
+    }
 
-	val result1 = for(i <- 1 to 5) yield (i + 1)
-	println(result1)
+    val result1 = for(i <- 1 to 5) yield (i + 1)
+    println(result1)
 
-	val result2 = (1 to 5).map(_ + 1)
-	println(result2)
+    val result2 = (1 to 5).map(_ + 1)
+    println(result2)
 
-	val result3 = for (i <- Some(100)) yield (i + 10)
-	println(result3)
+    val result3 = for (i <- Some(100)) yield (i + 10)
+    println(result3)
 
-	val result4 = Some(100).map(_ + 10)
-	println(result4)
+    val result4 = Some(100).map(_ + 10)
+    println(result4)
 
-	val result5 = for(i <- List(1,2,3); j <- List(4,5,6)) yield(i,j)
-	println(result5)
+    val result5 = for(i <- List(1,2,3); j <- List(4,5,6)) yield(i,j)
+    println(result5)
 
-	val result6 = List(1,2,3).flatMap(i => List(4,5,6).map(j => (i,j)))
-	println(result6)
-	
-	val result7 = for(i <- List(1,2,3,4) if (i % 2) == 0; j <- List(5,6)) yield (i,j)
-	println(result7)
+    val result6 = List(1,2,3).flatMap(i => List(4,5,6).map(j => (i,j)))
+    println(result6)
 
-	val result8 = List(1,2,3,4).withFilter(_ % 2 == 0).flatMap(i => List(5,6).map(j => (i,j)))
-	println(result8)
+    val result7 = for(i <- List(1,2,3,4) if (i % 2) == 0; j <- List(5,6)) yield (i,j)
+    println(result7)
+
+    val result8 = List(1,2,3,4).withFilter(_ % 2 == 0).flatMap(i => List(5,6).map(j => (i,j)))
+    println(result8)
 }
 ```
 
@@ -174,7 +174,71 @@ object ForComprehensions extends App {
 
 #### Fold and Reduce
 
+* `foldLeft` and `foldRight` will perform a reduction operation with a seed value
+* `reduceLeft` and `reduceRight` will perform a reduction operation without a seed value
 
+```scala
+object FoldAndReduce extends App {
+	val foldLeftResult = (1 to 10).foldLeft(0){(total:Int, next:Int) => println(s"Total: $total, Next: $next"); total + next}
+	println(foldLeftResult)
+	println("-----------")
 
+	val reduceLeftResult = (1 to 10).reduceLeft{(total:Int, next:Int) => println(s"Total: $total, Next: $next"); total + next}
+	println(reduceLeftResult)
+}
+```
 
+![](/assets/FoldAndReduce_1.png)
+
+```scala
+object FoldAndReduce extends App {
+	val foldRightResult = (1 to 10).foldRight(0){(next:Int, total:Int) => println(s"Total: $total, Next: $next"); total + next}
+	println(foldRightResult)
+	println("-----------")
+
+	val reduceRightResult = (1 to 10).reduceRight{(next:Int, total:Int) => println(s"Total: $total, Next: $next"); total + next}
+	println(reduceRightResult)
+	println("-----------")
+
+	println((1 to 10).sum)
+	println((1 to 10).product)
+}
+```
+
+![](/assets/FoldAndReduce_2.png)
+
+Let us refactor the above code
+
+```scala
+object FoldAndReduce extends App {
+	println((1 to 10).foldLeft(0)(_ + _)) // foldLeft
+	println((1 to 10).foldRight(0)(_ + _)) // foldRight
+	println((1 to 10).reduceLeft(_ + _)) // reduceLeft
+	println((1 to 10).reduceRight(_ + _)) // reduceRight
+}
+
+```
+
+![](/assets/FoldAndReduce_3.png)
+
+#### Zip
+
+* Zip merges two Collections
+* Zip result will be the size of the shorter collection
+
+```scala
+object Zip extends App {
+	val a = List(1,2,3,4)
+	val b = List(5,6,7,8)
+	println(a zip b)
+	println((1 to 5) zip (6 to 8))
+	println((1 to 2) zip (6 to 9))
+}
+```
+
+![](/assets/Zip_1.png)
+
+#### Other methods
+
+![](/assets/OtherMethods_!.png)
 
