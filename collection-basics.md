@@ -123,5 +123,79 @@ object Maps extends App {
 * Arrays are mutable
 * Repeated Parameters uses an Array to hold possible extra parameters
 
+```scala
+object Arrays extends App {
+	val a:Array[Int] = Array(1,2,3,4)
+	
+	println(a.head)
+	println(a.tail)
+	println(a.tail.toList)
+	println(a.init)
+	println(a.init.toList)
+	println(a.last)
+	println(a.apply(2))
+	println(a.max)
+	println(a.min)
+	println(a.isEmpty)
+
+	def repeatedParameter(x:Int, y:String, z:Any*) = {
+		println(z)
+		"%d %ss give you %s".format(x, y, z.mkString(", "))
+	}
+
+	println(repeatedParameter(3, "egg", "a delicious sandwich", "protein", "high cholestrol"))
+	println(repeatedParameter(3, "egg", List("a delicious sandwich", "protein", "high cholestrol"):_*))
+}
+```
+
+![](/assets/Arrays.png)
+
+#### Ranges
+
+* Ranges are a way to create a collection of numbers or characters without specifying them one by one
+* You can create ranges with syntax sugar
+* You can also create ranges with a factory in the Range companion object
+
+```scala
+object Ranges extends App {
+	val r1 = 1 to 10 // include 10
+	val r2 = 1 until 10 // exclude 10
+
+	println(r1)
+	println(r2)
+	println(r1.head)
+	println(r1.tail)
+
+	val r3 = 2 to 10 by 2
+	println(r3)
+
+	val r4 = 10 to 2 by -2
+	println(r4)
+
+	val r5 = 'a' to 'z'
+	println(r5)
+
+	val r6 = ('a' to 'z') ++ ('A' to 'Z')
+	println(r6)
+
+	val r7 = Range(1,10) //exclude 10
+	println(r7)
+
+	val r8 = Range(1,10,2) //exclude 10, step 2
+	println(r8)
+
+	val r9 = Range.inclusive(1,10) //include 10
+	println(r9)
+
+	val r10 = Range.inclusive(10,1,-2) //include 10, step 2
+	println(r10)
+
+	// For loop
+	for (i <- 1 to 10) println(i + 1)
+}
+```
+
+![](/assets/Ranges.png)
+
 
 
