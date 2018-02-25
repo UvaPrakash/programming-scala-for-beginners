@@ -247,3 +247,9 @@ object Zip extends App {
 
 ![](/assets/OtherMethods_4.png)
 
+#### Solving Functionally with Scala
+
+![](/assets/SolvingFunctionally.png)
+
+
+
