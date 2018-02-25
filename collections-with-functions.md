@@ -54,34 +54,52 @@ object MapFunction extends App {
 
 ```scala
 object FilterFunction extends App {
-	// Range
-	val a = 1 to 10
-	println(a.filter(x => x % 2 == 0)) // Filter even numbers
-	println(a.filter(_ % 2 == 0)) // Filter even numbers
-	println(a.filterNot(_ % 2 == 0)) // Filter odd numbers
-	println(a.exists(_ % 2 == 0)) // Does it have even numbers
+    // Range
+    val a = 1 to 10
+    println(a.filter(x => x % 2 == 0)) // Filter even numbers
+    println(a.filter(_ % 2 == 0)) // Filter even numbers
+    println(a.filterNot(_ % 2 == 0)) // Filter odd numbers
+    println(a.exists(_ % 2 == 0)) // Does it have even numbers
 
-	// String
-	def filterVowels(s:String) = s.toLowerCase.filter(c => Set('a','e','i','o','u').contains(c))
-	println(filterVowels("Apple"))
+    // String
+    def filterVowels(s:String) = s.toLowerCase.filter(c => Set('a','e','i','o','u').contains(c))
+    println(filterVowels("Apple"))
 
-	// Set
-	val b = Set("Brown", "Red", "Blue", "Green", "Yellow", "Black")
-	println(b.filter(s => filterVowels(s).size > 1))
+    // Set
+    val b = Set("Brown", "Red", "Blue", "Green", "Yellow", "Black")
+    println(b.filter(s => filterVowels(s).size > 1))
 
-	// Map
-	val m = Map(1 -> "One", 2 -> "Two", 3 -> "Three", 4 -> "Four", 5 -> "Five")
-	println(m.filterKeys(_ % 2 == 0))
+    // Map
+    val m = Map(1 -> "One", 2 -> "Two", 3 -> "Three", 4 -> "Four", 5 -> "Five")
+    println(m.filterKeys(_ % 2 == 0))
 
-	// Options
-	println(Some(5).filter(_ % 2 == 0)) // None
-	println(Some(6).filter(_ % 2 == 0))
+    // Options
+    println(Some(5).filter(_ % 2 == 0)) // None
+    println(Some(6).filter(_ % 2 == 0))
 }
 ```
 
 ![](/assets/Filter_Function.png)
 
 #### foreach
+
+* `foreach` is a method that takes a function which takes each element and returns `Unit`
+* Its perfect to use when you want to take an element and perform a side-effect like printing on a screen
+* `foreach` is available for lists, ranges, sets, maps, options etc.
+
+```scala
+object ForEachMethod extends App {
+	val a = 1 to 10
+	// a.foreach(x => println(x))
+	// a.foreach(println(_))
+	// a.foreach(println _)
+	a foreach println
+}
+```
+
+![](/assets/foreach_method.png)
+
+#### flatMap
 
 
 
