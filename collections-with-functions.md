@@ -89,17 +89,90 @@ object FilterFunction extends App {
 
 ```scala
 object ForEachMethod extends App {
-	val a = 1 to 10
-	// a.foreach(x => println(x))
-	// a.foreach(println(_))
-	// a.foreach(println _)
-	a foreach println
+    val a = 1 to 10
+    // a.foreach(x => println(x))
+    // a.foreach(println(_))
+    // a.foreach(println _)
+    a foreach println
 }
 ```
 
 ![](/assets/foreach_method.png)
 
 #### flatMap
+
+* `flatMap` for collections is a combination of flatten and map
+
+```scala
+object FlatMap extends App {
+	val a = List(1,2,3,4)
+	println(a.map(x => List(-x, 0, x)))
+	println(a.map(x => List(-x, 0, x)).flatten)
+	println(a.flatMap(x => List(-x, 0, x)))
+
+	val b = List(List(List(1,2,3), List(4,5,6)), List(List(7,8,9), List(10,11,12)))
+	println(b.flatMap(c => c))
+	println(b.flatMap(c => c).flatMap(c => c))
+
+	println(Set(2,4,6,8,10).flatMap(x => Set(x, x * 5)))
+
+	val m = Map(1 -> "One", 2 -> "Two", 3 -> "Three")
+	println(m.flatMap(t => Map(t._1 -> t._2, (t._1 * 100) -> (t._2 + " Hundred"))))
+
+	println(Some(5).map(x => Some(x + 10)))
+	println(Some(5).flatMap(x => Some(x + 10)))
+
+	// println(None.flatMap(x => Some(x + 10))) // Error
+	println(None.asInstanceOf[Option[Int]].flatMap(x => Some(x + 10)))
+	println(Some(10).flatMap(x => None))
+	
+	println(List(Some(1), Some(2), None, Some(3), None, Some(4)).flatMap(x => x))
+}
+```
+
+![](/assets/FlatMapMethod.png)
+
+#### For Comprehensions
+
+* For comprehensions are just `map`, `flatMap`, `withFilter` and `foreach` behind the scenes
+* They look like for loops but are not
+* They return collections like Lists, Sets, Options etc.
+
+```scala
+object ForComprehensions extends App {
+	for(i <- 1 to 5) {
+		println(i)	
+	}
+
+	val result1 = for(i <- 1 to 5) yield (i + 1)
+	println(result1)
+
+	val result2 = (1 to 5).map(_ + 1)
+	println(result2)
+
+	val result3 = for (i <- Some(100)) yield (i + 10)
+	println(result3)
+
+	val result4 = Some(100).map(_ + 10)
+	println(result4)
+
+	val result5 = for(i <- List(1,2,3); j <- List(4,5,6)) yield(i,j)
+	println(result5)
+
+	val result6 = List(1,2,3).flatMap(i => List(4,5,6).map(j => (i,j)))
+	println(result6)
+	
+	val result7 = for(i <- List(1,2,3,4) if (i % 2) == 0; j <- List(5,6)) yield (i,j)
+	println(result7)
+
+	val result8 = List(1,2,3,4).withFilter(_ % 2 == 0).flatMap(i => List(5,6).map(j => (i,j)))
+	println(result8)
+}
+```
+
+![](/assets/ForComprehensions.png)
+
+#### Fold and Reduce
 
 
 
